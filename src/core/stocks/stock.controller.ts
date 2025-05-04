@@ -4,7 +4,7 @@ import { ListStocksStockUseCase } from './use-cases/list-stocks.use-case';
 import { StockDatabaseRepositoryAdapter } from './adapters/stock-database-repository.adapter';
 import { UpdateStockUseCase } from './use-cases/update-stock.use-case';
 import { DeleteStockUseCase } from './use-cases/delete-stock.use-case';
-import { GetStockStockUseCase } from './use-cases/get-stock.use-case';
+import { GetStockUseCase } from './use-cases/get-stock.use-case';
 
 @Controller('stocks')
 export class StockController {
@@ -18,7 +18,7 @@ export class StockController {
 
     @Get(":id")
     async get(@Param("id") id: number) {
-        const useCase = new GetStockStockUseCase(this.repoAdapter);
+        const useCase = new GetStockUseCase(this.repoAdapter);
         const stock = await useCase.execute(id);
         if (!stock) throw new NotFoundException();
         return stock;
