@@ -4,6 +4,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { UserRepositoryPort } from '../ports/user-repository.port';
 import { UserOrmEntity } from '../entities/user.orm-entity';
 import { User } from '../user';
+import {hash, hashSync} from 'bcrypt';
 
 @Injectable()
 export class UserDatabaseRepositoryAdapter implements UserRepositoryPort {
@@ -23,7 +24,7 @@ export class UserDatabaseRepositoryAdapter implements UserRepositoryPort {
     async save(user: User): Promise<UserOrmEntity> {
         const userOrmEntity = new UserOrmEntity();
         userOrmEntity.username = user.username;
-        userOrmEntity.password = user.password;
+        userOrmEntity.password = hashSync(user.password, 10);
         return await this.userRepository.save(userOrmEntity);
     }
 

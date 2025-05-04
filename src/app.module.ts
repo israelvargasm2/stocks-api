@@ -7,6 +7,7 @@ import { StockOrmEntity } from './core/stocks/entities/stock.orm-entity';
 import { StockFromApiModule } from './core/stocks-from-api/stock-from-api.module';
 import { UserOrmEntity } from './core/users/entities/user.orm-entity';
 import { UserModule } from './core/users/user.module';
+import { AuthenticationModule } from './core/authentication/authentication.module';
 
 @Module({
   imports: [
@@ -19,6 +20,7 @@ import { UserModule } from './core/users/user.module';
     StockModule,
     StockFromApiModule,
     UserModule,
+    AuthenticationModule,
   ],
   controllers: [AppController],
   providers: [AppService],

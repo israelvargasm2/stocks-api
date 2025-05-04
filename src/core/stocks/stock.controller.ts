@@ -1,15 +1,17 @@
-import { Body, Controller, Delete, Get, NotFoundException, Param, Post, Put } from '@nestjs/common';
+import { Body, Controller, Delete, Get, NotFoundException, Param, Post, Put, UseGuards } from '@nestjs/common';
 import { CreateStockUseCase } from './use-cases/create-stock.use-case';
 import { ListStocksStockUseCase } from './use-cases/list-stocks.use-case';
 import { StockDatabaseRepositoryAdapter } from './adapters/stock-database-repository.adapter';
 import { UpdateStockUseCase } from './use-cases/update-stock.use-case';
 import { DeleteStockUseCase } from './use-cases/delete-stock.use-case';
 import { GetStockUseCase } from './use-cases/get-stock.use-case';
+import { AuthGuard } from '@nestjs/passport';
 
 @Controller('stocks')
 export class StockController {
     constructor(private readonly repoAdapter: StockDatabaseRepositoryAdapter) { }
 
+    //@UseGuards(AuthGuard("jwt"))
     @Get()
     async getAll() {
         const useCase = new ListStocksStockUseCase(this.repoAdapter);
