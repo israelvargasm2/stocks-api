@@ -1,7 +1,7 @@
 import { StockOrmEntity } from "../entities/stock.orm-entity";
 import { StockRepositoryPort } from "../ports/stock-repository.port";
 
-export class GetStockStockUseCase {
+export class GetStockUseCase {
     constructor(private readonly repo: StockRepositoryPort) { }
 
     async execute(id: number): Promise<StockOrmEntity | null> {

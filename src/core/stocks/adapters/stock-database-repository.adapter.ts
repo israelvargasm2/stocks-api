@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { FindOneOptions, Repository } from 'typeorm';
+import { Repository } from 'typeorm';
 import { StockRepositoryPort } from '../ports/stock-repository.port';
 import { InjectRepository } from '@nestjs/typeorm';
 import { StockOrmEntity } from '../entities/stock.orm-entity';
