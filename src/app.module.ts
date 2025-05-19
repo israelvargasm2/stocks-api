@@ -15,7 +15,7 @@ import { AuthenticationModule } from './core/authentication/authentication.modul
       type: 'sqlite',
       database: 'database.sqlite',
       entities: [StockOrmEntity, UserOrmEntity], 
-      synchronize: true, // ¡Cuidado en producción!
+      synchronize: false, // ¡Cuidado en producción!
     }),
     StockModule,
     StockFromApiModule,

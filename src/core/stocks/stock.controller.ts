@@ -7,11 +7,10 @@ import { DeleteStockUseCase } from './use-cases/delete-stock.use-case';
 import { GetStockUseCase } from './use-cases/get-stock.use-case';
 import { AuthGuard } from '@nestjs/passport';
 
+@UseGuards(AuthGuard("jwt"))
 @Controller('stocks')
 export class StockController {
     constructor(private readonly repoAdapter: StockDatabaseRepositoryAdapter) { }
-
-    //@UseGuards(AuthGuard("jwt"))
     @Get()
     async getAll() {
         const useCase = new ListStocksStockUseCase(this.repoAdapter);
