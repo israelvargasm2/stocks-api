@@ -1,13 +1,11 @@
-import { Body, Controller, Delete, Get, NotFoundException, Param, Post, Put, UseGuards } from '@nestjs/common';
+import { Body, Controller, Delete, Get, NotFoundException, Param, Post, Put } from '@nestjs/common';
 import { UserDatabaseRepositoryAdapter } from './adapters/user-database-repository.adapter';
 import { ListUsersStockUseCase } from './use-cases/list-users.use-case';
 import { GetUserUseCase } from './use-cases/get-user.use-case';
 import { CreateUserUseCase } from './use-cases/create-user.use-case';
 import { UpdateUserUseCase } from './use-cases/update-user.use-case';
 import { DeleteUserUseCase } from './use-cases/delete-user.use-case';
-import { AuthGuard } from '@nestjs/passport';
 
-@UseGuards(AuthGuard("jwt"))
 @Controller('users')
 export class UserController {
     constructor(private readonly repoAdapter: UserDatabaseRepositoryAdapter) { }
