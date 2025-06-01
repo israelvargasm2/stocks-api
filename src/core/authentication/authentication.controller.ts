@@ -13,13 +13,14 @@ export class AuthenticationController {
 
     @Post()
     async login(@Body("username") username: string, @Body("password") password: string) {
-        const user = await this.repoAdapter.findUser(username);
+        const user = await this.repoAdapter.findUser(username.trim());
         if (!user) throw new UnauthorizedException();
-        const isAuthenticatedUser = EncryptionService.decryptPassword(password, user.password);
+        const isAuthenticatedUser = EncryptionService.decryptPassword(password.trim(), user.password);
         if (!isAuthenticatedUser) throw new UnauthorizedException();
         const payload = { username: user.username, sub: user.id };
         return {
             access_token: this.jwtService.sign(payload),
+            user: user.username
         };
     }
 }
