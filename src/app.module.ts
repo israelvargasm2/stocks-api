@@ -12,10 +12,15 @@ import { AuthenticationModule } from './core/authentication/authentication.modul
 @Module({
   imports: [
     TypeOrmModule.forRoot({
-      type: 'sqlite',
-      database: 'database.sqlite',
+      type: 'postgres',
+      host: 'dpg-d10h0pc9c44c73dmp1s0-a.oregon-postgres.render.com',
+      port: 5432,
+      username: 'stocks_1dkg_user',
+      password: 'TFw0JpbaGH0LSgPajtKvuEJvXQ9CtlPx',
+      database: 'stocks_1dkg',
       entities: [StockOrmEntity, UserOrmEntity], 
-      synchronize: false, // ¡Cuidado en producción!
+      ssl: true,
+      synchronize: true, // ¡Cuidado en producción!
     }),
     StockModule,
     StockFromApiModule,
@@ -27,3 +32,11 @@ import { AuthenticationModule } from './core/authentication/authentication.modul
 })
 export class AppModule {}
 //TIGCEH8DAJ3I5JBF
+/*
+TypeOrmModule.forRoot({
+      type: 'sqlite',
+      database: 'database.sqlite',
+      entities: [StockOrmEntity, UserOrmEntity], 
+      synchronize: false, // ¡Cuidado en producción!
+    }),
+*/
