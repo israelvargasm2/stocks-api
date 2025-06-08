@@ -13,8 +13,9 @@ export class StockFromYahooFinanceRepositoryAdapter implements StockFromApiRepos
     async findStocks(symbols: string[]): Promise<StockFromApi[]> {
         const currentPrices: StockFromApi[] = [];
         if (symbols) {
-            for (let symbol of symbols) {
-                const result = await yahoo.default.quote(symbol);
+            const results = await yahoo.default.quote(symbols);
+            for (let result of results) {
+                const symbol = result.symbol as string;
                 let price = result.regularMarketPrice as number;
                 if (result.currency === "MXN") {
                     const usdToMxn = await yahoo.default.quote("USDMXN=X");
