@@ -13,14 +13,14 @@ import { AuthenticationModule } from './core/authentication/authentication.modul
   imports: [
     TypeOrmModule.forRoot({
       type: 'postgres',
-      host: 'dpg-d10h0pc9c44c73dmp1s0-a.oregon-postgres.render.com',
+      host: 'ep-snowy-meadow-a82jjfpz-pooler.eastus2.azure.neon.tech',
       port: 5432,
-      username: 'stocks_1dkg_user',
-      password: 'TFw0JpbaGH0LSgPajtKvuEJvXQ9CtlPx',
-      database: 'stocks_1dkg',
+      username: 'neondb_owner',
+      password: 'npg_wkYUqn53MBGx',
+      database: 'neondb',
       entities: [StockOrmEntity, UserOrmEntity], 
       ssl: true,
-      synchronize: false, // ¡Cuidado en producción!
+      synchronize: true, // ¡Cuidado en producción!
     }),
     StockModule,
     StockFromApiModule,
