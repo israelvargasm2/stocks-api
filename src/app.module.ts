@@ -20,7 +20,7 @@ import { AuthenticationModule } from './core/authentication/authentication.modul
       database: 'neondb',
       entities: [StockOrmEntity, UserOrmEntity], 
       ssl: true,
-      synchronize: false, // ¡Cuidado en producción!
+      synchronize: true, // ¡Cuidado en producción!
     }),
     StockModule,
     StockFromApiModule,

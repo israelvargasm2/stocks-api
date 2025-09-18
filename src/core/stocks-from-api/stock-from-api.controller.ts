@@ -1,11 +1,11 @@
 import { Controller, Get, Query, UseGuards } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
-import { StockFromYahooFinanceRepositoryAdapter } from './adapters/stock-from-yahoo-finance-repository.adapter';
+import { StockFromFinnhubApiRepositoryAdapter } from './adapters/stock-from-finnhub-api-repository.adapter';
 
 @UseGuards(AuthGuard("jwt"))
 @Controller('stocks-from-api')
 export class StockFromApiController {
-    constructor(private readonly repoAdapter: StockFromYahooFinanceRepositoryAdapter) { }
+    constructor(private readonly repoAdapter: StockFromFinnhubApiRepositoryAdapter) { }
 
     @Get()
     async getStocks(@Query('symbol') symbols: string[]) {
