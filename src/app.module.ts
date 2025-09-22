@@ -20,7 +20,7 @@ import { AuthenticationModule } from './core/authentication/authentication.modul
       database: 'neondb',
       entities: [StockOrmEntity, UserOrmEntity], 
       ssl: true,
-      synchronize: true, // ¡Cuidado en producción!
+      synchronize: false, // ¡Cuidado en producción!
     }),
     StockModule,
     StockFromApiModule,
@@ -31,12 +31,3 @@ import { AuthenticationModule } from './core/authentication/authentication.modul
   providers: [AppService],
 })
 export class AppModule {}
-//TIGCEH8DAJ3I5JBF
-/*
-TypeOrmModule.forRoot({
-      type: 'sqlite',
-      database: 'database.sqlite',
-      entities: [StockOrmEntity, UserOrmEntity], 
-      synchronize: false, // ¡Cuidado en producción!
-    }),
-*/
