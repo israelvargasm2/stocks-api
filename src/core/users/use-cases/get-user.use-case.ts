@@ -1,10 +1,12 @@
-import { UserOrmEntity } from "../entities/user.orm-entity";
-import { UserRepositoryPort } from "../ports/user-repository.port";
+import { UserEntity } from "../entities/user.entity";
+import { UsersPort } from "../ports/users.port";
 
 export class GetUserUseCase {
-    constructor(private readonly repo: UserRepositoryPort) { }
+    constructor(
+        private readonly usersPort: UsersPort
+    ) { }
 
-    async execute(id: number): Promise<UserOrmEntity | null> {
-        return await this.repo.find(id);
+    async execute(id: number): Promise<UserEntity | null> {
+        return await this.usersPort.get(id);
     }
 }
