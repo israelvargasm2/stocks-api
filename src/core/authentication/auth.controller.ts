@@ -1,26 +1,15 @@
-import { BadRequestException, Controller, Get, Req, UseGuards } from '@nestjs/common';
-import { AuthGuard } from '@nestjs/passport';
+import { Body, Controller, Post } from '@nestjs/common';
 import { AuthService } from './auth.service';
 
 @Controller('auth')
 export class AuthController {
+    
     constructor(
         private readonly authService: AuthService
     ) { }
 
-    @Get('google')
-    @UseGuards(AuthGuard('google'))
-    async googleAuth() {
-        // Redirige a Google
-    }
-
-    @Get('google/redirect')
-    @UseGuards(AuthGuard('google'))
-    async googleAuthRedirect(@Req() req: any) {
-        try {
-            return this.authService.login(req.user); // Retorna un JWT
-        } catch (err) {
-            throw new BadRequestException(err.message);
-        }
+    @Post('google')
+    async googleLogin(@Body('token') token: string) {
+        return this.authService.loginWithGoogle(token);
     }
 }

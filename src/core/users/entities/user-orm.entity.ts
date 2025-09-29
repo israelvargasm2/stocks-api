@@ -1,3 +1,4 @@
+import { StockOrmEntity } from 'src/core/stocks/entities/stock.orm-entity';
 import { Entity, Column, PrimaryGeneratedColumn, OneToMany } from 'typeorm';
 
 @Entity('users')
@@ -16,4 +17,7 @@ export class UserOrmEntity {
 
     @Column()
     provider: string;
+
+    @OneToMany(() => StockOrmEntity, (stock) => stock.user)
+    stocks: StockOrmEntity[];
 }

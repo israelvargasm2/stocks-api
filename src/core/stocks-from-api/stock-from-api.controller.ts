@@ -1,14 +1,15 @@
 import { Controller, Get, Query, UseGuards } from '@nestjs/common';
-import { AuthGuard } from '@nestjs/passport';
 import { StockFromFinnhubApiRepositoryAdapter } from './adapters/stock-from-finnhub-api-repository.adapter';
+import { JwtAuthGuard } from '../authentication/jwt.guard';
 
-@UseGuards(AuthGuard("jwt"))
+@UseGuards(JwtAuthGuard)
 @Controller('stocks-from-api')
 export class StockFromApiController {
     constructor(private readonly repoAdapter: StockFromFinnhubApiRepositoryAdapter) { }
 
     @Get()
     async getStocks(@Query('symbol') symbols: string[]) {
+        if (!symbols) symbols = [];
         if (typeof symbols === "string") {
             symbols = [symbols];
         }

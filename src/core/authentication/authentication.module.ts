@@ -1,8 +1,6 @@
 import { Module } from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { JwtModule } from '@nestjs/jwt';
-import { PassportModule } from '@nestjs/passport';
-import { GoogleStrategy } from './google.strategy';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { UserOrmEntity } from '../users/entities/user-orm.entity';
@@ -12,7 +10,6 @@ import { UsersPostgresAdapter } from '../users/adapters/users-postgres.adapter';
 
 @Module({
   imports: [
-    PassportModule,
     ConfigModule,
     JwtModule.registerAsync({
       imports: [ConfigModule],
@@ -29,7 +26,6 @@ import { UsersPostgresAdapter } from '../users/adapters/users-postgres.adapter';
   ],
   providers: [
     AuthService,
-    GoogleStrategy,
     JwtStrategy,
     UsersPostgresAdapter
   ],

@@ -7,7 +7,11 @@ import { StockFromYahooFinanceRepositoryAdapter } from './adapters/stock-from-ya
 
 @Module({
   imports: [HttpModule],
-  providers: [StockFromAlphaVantageApiRepositoryAdapter, StockFromFinnhubApiRepositoryAdapter, StockFromYahooFinanceRepositoryAdapter],
+  providers: [
+    StockFromAlphaVantageApiRepositoryAdapter, 
+    StockFromFinnhubApiRepositoryAdapter, 
+    StockFromYahooFinanceRepositoryAdapter
+  ],
   controllers: [StockFromApiController]
 })
 export class StockFromApiModule {}

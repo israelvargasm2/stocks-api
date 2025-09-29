@@ -3,18 +3,20 @@ import { StockFromApiRepositoryPort } from '../ports/stock-from-api-repository.p
 import { StockFromApi } from '../stock-from-api';
 import { HttpService } from '@nestjs/axios';
 import { lastValueFrom } from 'rxjs';
+import { ConfigService } from '@nestjs/config';
 
 @Injectable()
 export class StockFromAlphaVantageApiRepositoryAdapter implements StockFromApiRepositoryPort {
-    private readonly API_KEY = 'IVA1QIGW2FEO4BWL';
-    private readonly BASE_URL = 'https://www.alphavantage.co/query';
 
-    constructor(private readonly httpService: HttpService) { }
+    constructor(
+        private readonly httpService: HttpService,
+        private readonly configService: ConfigService
+    ) { }
 
     async findStocks(symbols: string[]): Promise<StockFromApi[]> {
         const urls: string[] = [];
         for (let symbol of symbols) {
-            const url = `${this.BASE_URL}?function=GLOBAL_QUOTE&symbol=${symbol}&apikey=${this.API_KEY}`;
+            const url = `${this.configService.get<string>('ALPHA_VANTAGE_URL')}?function=GLOBAL_QUOTE&symbol=${symbol}&apikey=${this.configService.get<string>('ALPHA_VANTAGE_API_KEY')}`;
             urls.push(url);
         }
         const currentPrices: StockFromApi[] = [];

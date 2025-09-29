@@ -31,7 +31,7 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
           StockOrmEntity, 
           UserOrmEntity
         ],
-        synchronize: false, // solo en dev
+        synchronize: configService.get<string>('PRODUCTION') === 'false', // solo en dev
       })
     }),
     StockModule,
