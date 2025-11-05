@@ -1,4 +1,5 @@
-import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
+import { UserOrmEntity } from 'src/core/users/entities/user-orm.entity';
+import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, JoinColumn } from 'typeorm';
 
 @Entity("stocks")
 export class StockOrmEntity {
@@ -13,4 +14,8 @@ export class StockOrmEntity {
 
     @Column({ type: "real" })
     mount: number;
+
+    @ManyToOne(() => UserOrmEntity, (user) => user.stocks, { onDelete: "CASCADE" })
+    @JoinColumn({ name: "user_id" })
+    user: UserOrmEntity;
 }

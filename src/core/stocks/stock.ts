@@ -4,5 +4,6 @@ export class Stock {
     public name: string,
     public quantity: number, 
     public mount: number,
+    public userId: number
   ) { }
 }
